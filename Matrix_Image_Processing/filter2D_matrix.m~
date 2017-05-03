@@ -1,0 +1,8 @@
+function A = filter2D_matrix( hc, hr, N, M )
+A1 = filterc_matrix(hc, N, M );
+A2 = filterc_matrix(hr, M, N );
+T1 = transpose_matrix(N, M);
+T2 = transpose_matrix(M, N);
+A = T2*A2*T1*A1;
+end
+

@@ -1,0 +1,85 @@
+% Crea la matrice di estensione ai bordi di una immagine
+%
+% E = matrix_extend( D, EXT, M, N )
+%
+% D = dimensione delle estensioni ai bordi
+%     (vettore di 4 interi, [left down right up])
+% EXT = stringa di 4 elementi per il tipo di estensione ad ogni bordo
+%      'e' = estensione pari
+%      'o' = estensione dispari
+%      'z' = zero padding
+% M = numero di righe della matrice da estendere
+% N = numero di colonne della matrice da estendere
+%
+% E = matrice di estensione
+%
+function E = matrix_extend_borders( n, ext, M, N )
+E = matrix_extend_borders_left(n(1), ext(1), M, N);
+E = matrix_extend_borders_down(n(2), ext(2), M, N+n(1))*E;
+E = matrix_extend_borders_right(n(3), ext(3), M+n(2), N+n(1))*E;
+E = matrix_extend_borders_up(n(4), ext(4), M+n(2), N+n(1)+n(3))*E;
+end
+
+% % Funzioni ancillari
+% 
+% % Estensione up
+% function E = matrix_extend_rows_up(n, ext, M, N)
+% if ext=='e'
+%     IM = sparse([flipud(eye(n)) zeros(n,M-n)]);
+% elseif ext=='o'
+%     IM = sparse([zeros(n,1) flipud(eye(n)) zeros(n,M-n-1)]);
+% elseif ext=='z'
+%     IM = sparse(zeros(n,M));
+% else
+%     IM = sparse([]);
+% end
+% E = [IM; speye(M)];
+% E = kron(speye(N), E);
+% end
+% 
+% % Estensione down
+% function E = matrix_extend_rows_down(n, ext, M, N)
+% if ext=='e'
+%     IM = sparse([zeros(n,M-n) flipud(eye(n))]);
+% elseif ext=='o'
+%     IM = sparse([zeros(n,M-n-1) flipud(eye(n)) zeros(n,1)]);
+% elseif ext=='z'
+%     IM = sparse(zeros(n,M));
+% else
+%     IM = sparse([]);
+% end
+% E = [speye(M); IM];
+% E = kron(speye(N), E);
+% end
+% 
+% 
+% % Estensione left
+% function E = matrix_extend_rows_left(n, ext, M, N)
+% if ext=='e'
+%     IN = sparse([flipud(eye(n)) zeros(n,N-n)]);
+% elseif ext=='o'
+%     IN = sparse([zeros(n,1) flipud(eye(n)) zeros(n,N-n-1)]);
+% elseif ext=='z'
+%     IN = sparse(zeros(n,N));
+% else
+%     IN = sparse([]);
+% end
+% E = [IN; speye(N)];
+% E = kron(E, speye(M));
+% end
+% 
+% 
+% % Estensione right
+% function E = matrix_extend_rows_right(n, ext, M, N)
+% if ext=='e'
+%     IN = sparse([zeros(n,N-n) flipud(eye(n))]);
+% elseif ext=='o'
+%     IN = sparse([zeros(n,N-n-1) flipud(eye(n)) zeros(n,1)]);
+% elseif ext=='z'
+%     IN = sparse(zeros(n,N));
+% else
+%     IN = sparse([]);
+% end
+% E = [speye(N); IN];
+% E = kron(E, speye(M));
+% end
