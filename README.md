@@ -2,7 +2,9 @@
 This project was presented as my Bachelor's Thesis at Università degli Studi di Firenze.
 ## Description
 The aim of the project is to remove linear uniform motion blur from grayscale images, using the Wavelet Transform.
+
 We also propose a method to estimate the parameters of the Point Spread Function (PSF).
+
 The file https://github.com/gmenchetti/Image-Deblurring/blob/master/docs/Thesis.pdf gives more information about the project (unfortunately, it is only available in Italian).
 
 ## Run
