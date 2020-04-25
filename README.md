@@ -1,8 +1,11 @@
 # Image_Deblurring
-Image deblurring method for grayscale image
-MATLAB code for my thesis for image linear motion deblurring blind and non-blind. 
-As speciefied in the PDF file, the method for the estimation of PSF it's not so accurated mostly because when the values length and theta are estimated, i reconstruct the PSF using the MATLAB method fspecial.
+This project was presented as my Bachelor's Thesis at Università degli Studi di Firenze.
+## Description
+The aim of the project is to remove linear uniform motion blur from grayscale images, using the Wavelet Transform.
+We also propose a method to estimate the parameters of the Point Spread Function (PSF).
+The file https://github.com/gmenchetti/Image-Deblurring/blob/master/docs/Thesis.pdf gives more information about the project (unfortunately, it is only available in Italian).
 
+## Run
 To run the code:
 1. Open test_blind/test_non_blind file
 2. Select image
